@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>名刺</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <script src="script.js"></script>
+</head>
+
+<body>
+
+    <div class="namecard">
+        <!-- <p class="affiliation">〇〇大学</p> -->
+        <p class="section" id="section">□□学部◇◇学科</p>
+        <p class="name" id="name">ほげ 太郎</p>
+        <p class="phonetic" id="phonetic">hoge taro</p>
+
+        <div class="contact">
+            <p class="name_affiliation" id="name_affiliation">〇〇大学～キャンパス</p>
+            <p class="address" id="address">〒</p>
+            <span id="phone"><i class="fas fa-mobile-alt"></i>Phone</span>
+            <span id="email"><i class="far fa-envelope"></i>mail@gmail.com</span>
+        </div>
+    </div>
+    <!-- 更新ボタン -->
+    <button id="editButton">編集</button>
+
+    <!-- 変更完了ボタン -->
+    <button id="saveButton" style="display: none;">変更完了</button>
+</body>
+
+</html>
+
+<style>
+*{
+    margin: 0;
+    padding: 0;
+
+    font-family: 'Sawarabi Mincho', sans-serif;
+}
+
+.namecard {
+    /*名刺の区切れ目がわかるような線*/
+    border: 1px solid #ddd;
+
+    /*名刺の大きさ（縦横比さえ合ってれば良いと思います）*/
+    width: 22.75rem;
+    height: 11.75rem;
+
+    /*名刺の余白*/
+    margin: 2rem;
+    padding: 3rem;
+
+    /*装飾*/
+    color: #333;
+}
+
+.affiliation{
+    text-align: center;
+}
+
+.section{
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 10px;
+
+}
+
+.name {
+    /*文字の装飾*/
+    font-size: 2rem;
+
+    /*微妙にずれてるのを修正*/
+    margin-top: -0.5rem;
+    margin-left: -0.25rem;
+
+    text-align: center;
+
+}
+
+
+.phonetic {
+    text-align: center;
+}
+
+.contact {
+    /*flexboxにして縦並びにしています*/
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+
+    /*余白*/
+    margin-top: 0.5rem;
+
+    /*装飾*/
+    font-size: 0.8rem;
+}
+
+/* .contact span {
+    margin-top: 0.25rem;
+} */
+
+
+
+.contact i {
+    /*SNSなどのアイコンの位置調整*/
+    width: 1.25rem;
+}
+
+
+</style>
