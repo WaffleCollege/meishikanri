@@ -1,8 +1,8 @@
 <?php
 /* ①　データベースの接続情報を定数に格納する */
-const DB_HOST = 'mysql:dbname=user_login;host=localhost';
-const DB_USER = 'root';
-const DB_PASSWORD = '0308haruka';
+const DB_HOST = 'mysql:dbname=business_card_revolution;host=localhost';
+const DB_USER = 'business_card_revolution';
+const DB_PASSWORD = 'meishikanri';
 
 //②　例外処理を使って、DBにPDO接続する
 try {

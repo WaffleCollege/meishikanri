@@ -34,7 +34,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     //データベースの中に同一ユーザー名が存在していないか確認
     if(empty($errors['name'])){
-        $sql = "SELECT id FROM users WHERE name = :name";
+        $sql = "SELECT id FROM user_login WHERE name = :name";
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue('name',$datas['name'],PDO::PARAM_INT);
         $stmt->execute();
@@ -66,7 +66,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         $pdo->beginTransaction();//トランザクション処理
         try {
-            $sql = 'insert into users ('.$columns .')values('.$values.')';
+            $sql = 'insert into user_login ('.$columns .')values('.$values.')';
             $stmt = $pdo->prepare($sql);
             $stmt->execute($params);
             $pdo->commit();
