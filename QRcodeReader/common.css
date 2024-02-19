@@ -1,0 +1,6 @@
+/* インカメで左右反転 */
+video.active, canvas.active {
+    transform: rotateY(180deg);
+    -webkit-transform:rotateY(180deg);
+    -moz-transform:rotateY(180deg);
+}

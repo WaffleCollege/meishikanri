@@ -1,0 +1,18 @@
+{
+    "name": "Simple QR Reader",
+    "short_name": "Simple QR",
+    "theme_color": "#000000",
+    "background_color": "#FFFFFF",
+    "display": "standalone",
+    "orientation": "portrait",
+    "Scope": "/",
+    "start_url": "/",
+    "icons": [
+      {
+        "src": "images/icons/icon-72x72.png",
+        "sizes": "72x72",
+        "type": "image/png"
+      }
+     
+    ]
+  }

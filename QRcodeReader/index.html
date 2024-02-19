@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" herf="css/style.css">
+    <link rel="stylesheet" herf="css/common.css">
+    <script src="main.js"></script>
+    <script src="sw.js"></script>
+    <script src="manifest.json"></script>
+    <script src="index.js"></script>
+</head>
+<body>
+    <div class="reader">
+        <video id="js-video" class="reader-video" autoplay playsinline></video>
+      </div>
+      <div>
+        <h1>WEBカメラの映像を表示</h1>
+        <div>
+            <video id="video"></video>
+        </div>
+    </div>
+    <script>
+        const video = document.getElementById("video")
+        navigator.mediaDevices.getUserMedia({
+            audio: false,
+            video: {
+              width: 640,
+               height: 480,
+              facingMode:null
+            }
+        }).then(stream => {
+            video.srcObject = stream;
+            video.play()
+        }).catch(e => {
+          console.log(e)
+        })
+    </script>
+      <div style="display:none">
+        <canvas id="js-canvas"></canvas>
+      </div>
+      <div id="js-modal" class="modal-overlay">
+        <div class="modal">
+          <div class="modal-cnt">
+            <span class="modal-title">読み取り結果</span>
+            <span id="js-result" class="modal-result"></span>
+          </div>
+          <a href="" id="js-link" class="modal-btn" target="_blank">開く</a>
+          <button type="button" id="js-modal-close" class="modal-btn">閉じる</button>
+        </div>
+      </div>
+      <link rel="manifest" href="manifest.webmanifest" />
+      <script async src="https://cdn.jsdelivr.net/npm/pwacompat@2.0.9/pwacompat.min.js" integrity="sha384-VcI6S+HIsE80FVM1jgbd6WDFhzKYA0PecD/LcIyMQpT4fMJdijBh0I7Iblaacawc" crossorigin="anonymous"></script>
+</body>
+</html>
