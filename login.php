@@ -40,7 +40,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $errors = validation($datas,false);
     if(empty($errors)){
         //ユーザーネームから該当するユーザー情報を取得
-        $sql = "SELECT id,name,password FROM user_login WHERE name = :name";
+        $sql = "SELECT id,name,password FROM users WHERE name = :name";
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue('name',$datas['name'],PDO::PARAM_INT);
         $stmt->execute();
