@@ -42,7 +42,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $errors['name'] = 'This username is already taken.';
         }
     }
-    //エラーがなかったらDBへの新規登録を実行
+    //エラーがなかったらuserテーブルへの新規登録を実行
     if(empty($errors)){
         $params = [
             'id' =>null,
@@ -64,11 +64,33 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $count++;
         }
 
+
         $pdo->beginTransaction();//トランザクション処理
         try {
             $sql = 'insert into users ('.$columns .')values('.$values.')';
             $stmt = $pdo->prepare($sql);
             $stmt->execute($params);
+            // 新規ユーザーのid取得
+            $userId = $pdo->lastInsertId();
+            // user_infoテーブルに新しいユーザー情報を挿入
+            $sqlUserInfo = 'INSERT INTO user_info (user_id, kanji_name, romaji_name, affiliation, position, company_address, phone_number, email_address, photo_url) 
+                    VALUES (:user_id, :kanji_name, :romaji_name, :affiliation, :position, :company_address, :phone_number, :email_address, :photo_url)';
+                    $stmtUserInfo = $pdo->prepare($sqlUserInfo);
+            // パラメータを設定
+            $userInfoParams = [
+                'user_id' => $userId,
+                'kanji_name' => null,
+                'romaji_name' => null,
+                'affiliation' => null,
+                'position' => null,
+                'company_address' => null,
+                'phone_number' => null,
+                'email_address' => null,
+                'photo_url' => null
+            ];
+            // プリペアドステートメントを実行
+            $stmtUserInfo->execute($userInfoParams);
+
             $pdo->commit();
             header("location: login.php");
             exit;
@@ -77,6 +99,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $pdo->rollBack();
         }
     }
+
 }
 ?>
 
