@@ -51,6 +51,24 @@ window.onload = (e)=>{
 			if(code){
 				drawRect(code.location);// Rect
 				msg.innerText = code.data;// Data
+				// QRコードのデータを取得
+				var qrData = code.data;
+
+				// PHPファイルへのURL
+				var url = "QRcodeRead.php";
+
+				// データを送信
+				var xhr = new XMLHttpRequest();
+				xhr.open("POST", url, true);
+				xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				xhr.onreadystatechange = function () {
+					if (xhr.readyState === 4 && xhr.status === 200) {
+						// レスポンスを受け取った後の処理
+						console.log(xhr.responseText);
+					}
+				};
+				xhr.send("qr_data=" + encodeURIComponent(qrData)); // データをエンコードして送信
+
 			}else{
 				msg.innerText = "Detecting QR-Code...";
 			}
