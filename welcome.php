@@ -26,5 +26,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         ここを一覧画面にする。<br>
         <a href="login.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>
     </p>
+    <a href="MyPage.php" class="btn btn-primary">マイページへ</a>
 </body>
 </html>
