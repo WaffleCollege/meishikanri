@@ -17,41 +17,38 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>User Information</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body{
-            font: 14px sans-serif;
-        }
-        .wrapper{
-            width: 800px;
-            padding: 20px;
-            margin: 0 auto;
-        }
-    </style>
+    <title>Your Friends List</title>
+    <link rel="stylesheet" href="./MyPage.css">
 </head>
-<body>
+<body class="showData_body">
     <div class="wrapper">
-        <h2>User Information</h2>
-        <p>Here is the information of users:</p>
+        <h2>Your Friends List</h2>
+        <p>Here is the information of your friends users:</p>
 
-        <table class="table table-bordered">
+        <table class="table_table-bordered">
             <thead>
-                <tr>
+                <!-- <tr>
                     <th>ID</th>
-                    <th>Name</th>
-                    <th>Name</th>
-                    <th>Aff</th>
+                    <th>Name_kanji</th>
+                    <th>Name_romaji</th>
+                    <th>Affiliation</th>
                     <th>Position</th>
+                    <th>Company Address</th>
+                    <th>Phone Number</th>
                     <th>Email</th>
-                    <th>phone</th>
-                    <th>email</th>
-                    <th>photo</th>
-                    <!-- 他の必要な情報があればここに追加 -->
-                </tr>
+                    <th>PHOTO</th>
+                    
+                </tr> -->
             </thead>
             <tbody>
-                <?php foreach($rows as $row): ?>
+                <?php
+                // データベースからデータを取得してHTMLに出力
+                require_once "db_connect.php"; // データベースに接続
+                $sql = "SELECT * FROM user_info";
+                $stmt = $pdo->query($sql);
+                $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                foreach($rows as $row): ?>
+                
                     <tr>
                         <td><?php echo $row['user_id']; ?></td>
                         <td><?php echo $row['kanji_name']; ?></td>

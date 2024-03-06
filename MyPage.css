@@ -10,6 +10,7 @@ body {
     align-items: center; */
     height: 100vh;
     background-color: #F0E8F8;
+    font: caption;
 }
 
 .content {
@@ -234,3 +235,55 @@ body {
     white-space: nowrap;
   }
 /* ここまでがナビゲーションバーのCSS */
+
+
+/* 一覧ページ */
+.showData_body{
+  align-items: center;
+}
+
+.wrapper h2{
+  font-size: 40px;
+  margin-top: 30px;
+}
+
+.wrapper p{
+  font-size: 15px;
+  margin-top: 5px;
+}
+
+.wrapper {
+  text-align: center;
+}
+
+.table_table-bordered {
+  border-collapse: collapse;
+  align-items: center;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  width: 800px;
+  border: 2px solid #ccc;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 50px;
+}
+
+.table_table-bordered th,
+.table_table-bordered td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+.table_table-bordered th {
+  background-color: #f2f2f2;
+}
+.table_table-bordered tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.table_table-bordered tr:hover {
+  background-color: #ddd;
+}
+
+.table_table-bordered tr {
+  margin-bottom: 10px; /* 行ごとの余白を追加 */
+}
