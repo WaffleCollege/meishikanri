@@ -1,32 +1,36 @@
 <?php
-//ファイルの読み込み
+// ファイルの読み込み
 require_once "db_connect.php";
 require_once "functions.php";
-//セッション開始
+// セッション開始
 session_start();
 // セッションからユーザーIDを取得
 $userID = isset($_SESSION["id"]) ? $_SESSION["id"] : "";
-// ユーザーIDに基づいてuser_infoテーブルから情報を取得
-$stmt = $pdo->prepare("SELECT * FROM user_info WHERE user_id = ?");
-$stmt->execute([$userID]);
-$userInfo = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // セッションからQRコードのデータを取得
 if (isset($_SESSION['qrCodeData'])) {
     $qrCodeData = $_SESSION['qrCodeData'];
-    // セッションから取得したQRコードのデータを利用する
-    echo "別のPHPファイルで利用されるQRコードのデータ: " . $qrCodeData;
+    // user_info テーブルから kanji_name を取得するクエリを実行
+    $stmt = $pdo->prepare("SELECT kanji_name FROM user_info WHERE user_id = ?");
+    $stmt->execute([$qrCodeData]);
+    $userInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // kanji_name を取得できた場合は表示する
+    if ($userInfo && isset($userInfo['kanji_name'])) {
+        $kanjiName = $userInfo['kanji_name'];
+        echo '<div class="content">';
+        echo '<p>' . htmlspecialchars($kanjiName) . 'さんを追加しました</p>';
+        echo '<button class="button1" id="redirectButton1" type="button">back</button>';
+        echo '</div>';
+    } else {
+        echo "エラー: 指定されたユーザーが見つかりませんでした。";
+    }
 } else {
     // QRコードのデータがセッションに存在しない場合のエラーハンドリング
     echo "エラー: QRコードのデータがセッションに存在しません。";
 }
-
-echo '<div class="content">';
-echo '<p>' . htmlspecialchars($qrCodeData) . 'さんを追加しました</p>';
-echo '<button class="button1" id="redirectButton1" type="button">back</button>';
-echo '</div>';
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

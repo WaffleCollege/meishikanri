@@ -52,7 +52,6 @@ window.onload = (e)=>{
 		ctx.lineTo(end.x, end.y);
 		ctx.stroke();
 	}
-    // ... (previous code)
 
 	function startTick() {
 		msg.innerText = "Loading video...";
@@ -81,7 +80,6 @@ window.onload = (e)=>{
 				}).catch(error => {
 					console.error('データ送信中にエラーが発生しました:', error);
 				});
-
 				return;
 			} else {
 				msg.innerText = "Detecting QR-Code...";
@@ -89,5 +87,4 @@ window.onload = (e)=>{
 		}
 		setTimeout(startTick, 250);
 	}
-
 }

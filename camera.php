@@ -3,7 +3,9 @@ session_start();
 require_once 'db_connect.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $qr_data = $_POST['qrData'];
+    $raw_data = file_get_contents("php://input");
+    $data = json_decode($raw_data, true);
+    $qr_data = $data['qrData'];
 
     if (isset($qr_data)) {
         $_SESSION['qrCodeData'] = $qr_data;
