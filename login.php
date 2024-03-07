@@ -42,7 +42,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         //ユーザーネームから該当するユーザー情報を取得
         $sql = "SELECT id,name,password FROM users WHERE name = :name";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindValue('name',$datas['name'],PDO::PARAM_INT);
+        $stmt->bindParam('name',$datas['name'],PDO::PARAM_STR);
         $stmt->execute();
 
         //ユーザー情報があれば変数に格納
@@ -56,7 +56,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $_SESSION["id"] = $row['id'];
                 $_SESSION["name"] =  $row['name'];
                 //ウェルカムページへリダイレクト
-                header("location:welcome.php");
+                header("location:showData.php");
                 exit();
             } else {
                 $login_err = 'Invalid username or password.';
@@ -74,6 +74,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./login.css"/>
     <style>
         body{
             font: 14px sans-serif;

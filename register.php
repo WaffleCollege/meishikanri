@@ -36,7 +36,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($errors['name'])){
         $sql = "SELECT id FROM users WHERE name = :name";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindValue('name',$datas['name'],PDO::PARAM_INT);
+        $stmt->bindParam('name',$datas['name'],PDO::PARAM_STR);
         $stmt->execute();
         if($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             $errors['name'] = 'This username is already taken.';
@@ -110,6 +110,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <title>Sign Up</title>
     <!-- bootstrap読み込み -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./register.css"/>
     <style>
         body{
             font: 14px sans-serif;

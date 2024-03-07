@@ -18,7 +18,7 @@ $romaji_name = $userInfo['romaji_name'];
 $affiliation = $userInfo['affiliation'];
 $position = $userInfo['position'];
 $company_address = $userInfo['company_address'];
-$phon_number = $userInfo['phon_number'];
+$phone_number = $userInfo['phone_number'];
 $email_address = $userInfo['email_address'];
 $photo_url = $userInfo['photo_url'];
 
@@ -35,20 +35,20 @@ $photo_url = $userInfo['photo_url'];
 <body>
 <div class="navigation">
       <ul>
-        <li class="list active">
+        <li class="list">
           <a href="showData.php">
             <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
             <span class="title">HOME</span>
           </a>
         </li>
-        <li class="list">
+        <li class="list active">
           <a href="MyPage.php">
             <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
-            <span class="title">PLOFILE</span>
+            <span class="title">PROFILE</span>
           </a>
         </li>
         <li class="list">
-          <a href="#">
+          <a href="logout.php">
             <span class="icon"
               ><ion-icon name="log-out-outline"></ion-icon
             ></span>
@@ -56,15 +56,23 @@ $photo_url = $userInfo['photo_url'];
           </a>
         </li>
       </ul>
-    </div>
+  </div>
 
     <div class="content">
         <div class="namecard">
-            <p class="name"><?php echo $kanji_name; ?></p>
-            <span class="phonetic"><?php echo $romaji_name; ?></span>
+            <ul class="name" style="list-style: none;">
+                <li class="position"><?php echo $position; ?></li>
+                <li class="kanji_name"><?php echo $kanji_name; ?></li>
+                <li class="romaji_name"><?php echo $romaji_name; ?></li>
+            </ul>
+            
+
+            <p class="affiliation"><?php echo $affiliation; ?></p>
+            <p class="company_address"><?php echo $company_address; ?></p>       
 
             <div class="contact">
-                
+                <p class="phone_number"><ion-icon name="call-outline"></ion-icon>：<?php echo $phone_number; ?></p>
+                <p class="email_address"><ion-icon name="mail-outline"></ion-icon>：<?php echo $email_address; ?></p>
             </div>
         </div>
         

@@ -12,6 +12,17 @@ $stmt = $pdo->prepare("SELECT * FROM user_info WHERE user_id = ?");
 $stmt->execute([$userID]);
 $userInfo = $stmt->fetch(PDO::FETCH_ASSOC);
 
+// 各要素を変数に格納
+$kanji_name = $userInfo['kanji_name'];
+$romaji_name = $userInfo['romaji_name'];
+$affiliation = $userInfo['affiliation'];
+$position = $userInfo['position'];
+$company_address = $userInfo['company_address'];
+$phone_number = $userInfo['phone_number'];
+$email_address = $userInfo['email_address'];
+$photo_url = $userInfo['photo_url'];
+
+
 // POSTリクエストを処理
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // フォームから送信されたデータを取得
@@ -29,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute([$kanji_name, $romaji_name, $affiliation, $position, $company_address, $phone_number, $email_address, $photo_url, $userID]);
 
     // MyPage.phpにリダイレクト
-    header("Location: MyPage.php");
+    header("Location: edit.php");
     exit;
 }
 ?>
@@ -39,39 +50,113 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit My Info</title>
+    <link rel="stylesheet" href="./edit.css"/>
+    <title>Edit</title>
 </head>
 <body>
-    <h1>Edit My Info</h1>
+    <div class="navigation">
+      <ul>
+        <li class="list">
+          <a href="showData.php">
+            <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+            <span class="title">HOME</span>
+          </a>
+        </li>
+        <li class="list active">
+          <a href="MyPage.php">
+            <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
+            <span class="title">PLOFILE</span>
+          </a>
+        </li>
+        <li class="list">
+          <a href="logout.php">
+            <span class="icon"
+              ><ion-icon name="log-out-outline"></ion-icon
+            ></span>
+            <span class="title">SIGNOUT</span>
+          </a>
+        </li>
+      </ul>
+    </div>
 
-    <!-- フォーム -->
-    <form method="post">
-        <label for="kanji_name">漢字名前:</label>
-        <input type="text" id="kanji_name" name="kanji_name" value="<?php echo $userInfo['kanji_name']; ?>"><br>
+    <div class="content">
+        <form action="" method="POST">
+            <div class="namecard"> 
+                <ul class="name" style="list-style: none;">
+                    <li class="position">
+                        <input type="text" name="position" value="<?php echo $position; ?>">
+                    </li>
+                    <li class="kanji_name">
+                        <input type="text" name="kanji_name" value="<?php echo $kanji_name; ?>">
+                    </li>
+                    <li class="romaji_name">
+                        <input type="text" name="romaji_name" value="<?php echo $romaji_name; ?>">
+                    </li>
+                </ul>
 
-        <label for="romaji_name">ローマ字名前:</label>
-        <input type="text" id="romaji_name" name="romaji_name" value="<?php echo $userInfo['romaji_name']; ?>"><br>
+                <p class="affiliation">
+                    <input type="text" name="affiliation" value="<?php echo $affiliation; ?>">
+                </p>
+                <p class="company_address">
+                    <input type="text" name="company_address" value="<?php echo $company_address; ?>">
+                </p>
 
-        <label for="affiliation">所属:</label>
-        <input type="text" id="affiliation" name="affiliation" value="<?php echo $userInfo['affiliation']; ?>"><br>
+                <div class="contact">
+                    <p class="phone_number"><ion-icon name="call-outline"></ion-icon>：
+                        <input type="tel" name="phone_number" value="<?php echo $phone_number; ?>">
+                    </p>
+                    <p class="email_address"><ion-icon name="mail-outline"></ion-icon>：
+                        <input type="email" name="email_address" value="<?php echo $email_address; ?>">
+                    </p>
+                </div>
+              </div>    
 
-        <label for="position">役職:</label>
-        <input type="text" id="position" name="position" value="<?php echo $userInfo['position']; ?>"><br>
+              <input class="updateButton" type="submit" value="Update">
+          </form>
+        
 
-        <label for="company_address">住所:</label>
-        <input type="text" id="company_address" name="company_address" value="<?php echo $userInfo['company_address']; ?>"><br>
+        <button class="button2" id="redirectButton2" type="button">Back</button>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // ボタン要素を取得
+            const button1 = document.getElementById("redirectButton2");
 
-        <label for="phone_number">電話番号:</label>
-        <input type="text" id="phone_number" name="phone_number" value="<?php echo $userInfo['phone_number']; ?>"><br>
+            // ボタンのクリックイベントを処理
+            button1.addEventListener("click", function() {
+                
+                window.location.href = "MyPage.php";
+            });
+        });
+    </script>
+        
 
-        <label for="email_address">メールアドレス:</label>
-        <input type="email" id="email_address" name="email_address" value="<?php echo $userInfo['email_address']; ?>"><br>
+    <!-- サイドバーのJS -->
+    <script>
+      const list = document.querySelectorAll(".list");
+      console.log(list);
+      function activeLink() {
+        list.forEach((item) =>
+          // console.log(item);
+          item.classList.remove("active")
+        );
+        this.classList.add("active");
+      }
 
-        <label for="photo_url">写真URL:</label>
-        <input type="text" id="photo_url" name="photo_url" value="<?php echo $userInfo['photo_url']; ?>"><br>
+      list.forEach((item) => {
+        item.addEventListener("click", activeLink);
+      });
+    </script>
 
-        <input type="submit" value="保存">
-    </form>
+    <!-- アイコンの引用元 -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
 </body>
 </html>
-

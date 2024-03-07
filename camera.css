@@ -14,7 +14,7 @@ body {
 
 .content {
     position: absolute;
-    top: 0;
+    top: -20%;
     left: 0;
     right: 0;
     bottom: 0;
@@ -25,106 +25,31 @@ body {
     overflow-y: auto;
     margin: auto;
     z-index: 1; /* ナビゲーションバーの上に配置 */
-}
-
-
-/* 名刺部分のCSS */
-.namecard {
-    /*名刺の区切れ目がわかるような線*/
-    /* border: 1px solid #FFF; */
-
-    /*名刺の大きさ（縦横の比率が1.654）*/
-    width: 33.08rem;
-    height: 20.00rem;
-
-    /*名刺の余白*/
-    margin: 2rem;
-    padding: 2.5rem 3.5rem;
-
-    /*装飾*/
-    color: #000000;
-
-    margin: 0 auto;
-    margin-top: 100px;
-
-    position: relative;
-
-    background-color: #fefefe;
-    /* font-family: "Arial", "Helvetica", sans-serif; */
-    /* font-family: "Century Gothic", "Arial", sans-serif; */
-    /* font-family: "Hiragino Mincho ProN", "MS Mincho", serif; */
-    /* font-family: "Century Schoolbook", "Georgia", serif; */
-}
-
-.logo {
-    position: absolute; /* 位置を絶対値にする */
-    top: 10px; /* 上から10pxの位置に配置 */
-    right: 10px; /* 右から10pxの位置に配置 */
-    width: 50px; /* 画像の幅 */
-    height: auto; /* 高さは自動調整 */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* 上下方向も中央揃え */
+    height: 100vh; /* 画面の高さいっぱいに広げる */
 }
 
 
 
-ul.name {
-    padding: 0;
-    margin: 0;
+
+/* カメラ */
+#msg {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* 上下方向も中央揃え */
+    height: 100%; /* 要素の高さを 100% にする */
 }
 
-ul.name li {
-    margin: 0; /* マージンを0に設定 */
+#canvas {
+    border-radius: 20px; /* 任意の角丸の半径を設定 */
+    overflow: hidden; /* 角丸を適用するために必要 */
 }
-
-ul.name li.position {
-    font-weight: bold;
-    font-size: 20px;
-    font-family: "Century Schoolbook", "Georgia", serif;
-}
-
-ul.name li.kanji_name {
-    margin-top: -5px;
-    font-size: 45px;
-    font-weight: bold;
-    font-family: "Century Schoolbook", "Georgia", serif;
-}
-
-ul.name li.romaji_name {
-    margin-top: -5px;
-    font-size: 24px;
-    font-family: "Century Schoolbook", "Georgia", serif;
-}
+/* ここまでがカメラ */
 
 
-.affiliation{
-    margin-top: 18px;
-    font-size: 24px;
-    font-family: "Century Schoolbook", "Georgia", serif;
-}
-
-.company_address {
-    font-size: 18px;
-    font-family: "Century Schoolbook", "Georgia", serif;
-}
-
-.contact {
-    margin-top: 10px;
-
-}
-
-.phone_number, .email_address {
-    font-size: 16px;
-    margin-bottom: 3px;
-    font-family: "Century Schoolbook", "Georgia", serif;
-}
-
-.contact p ion-icon {
-    vertical-align: middle; /* アイコンを垂直方向に中央揃え */
-    margin-bottom: 4px; /* アイコンを少し下に移動 */
-}
-
-/* ここまでが名刺のCSS */
-
-/* Editボタン */
+/* Backボタン */
 .button1 {
     border: none;
     border-radius: 100px;
@@ -139,7 +64,7 @@ ul.name li.romaji_name {
     text-align: center;
     margin: 10px 0;
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 40px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.3); /* 常時の影を追加 */
     transition: transform 0.3s, box-shadow 0.3s; /* ボタンを押したときの影にトランジションを追加 */
 }
@@ -149,29 +74,7 @@ ul.name li.romaji_name {
     transform: translateY(2px); /* ボタンをより下に移動 */
     box-shadow: 0 2px 4px rgba(0,0,0,0.3); /* ボタンが押されたときの影を追加 */
 }
-/* ここまでEditボタン */
-
-
-/* QRとカメラボタン */
-.button2 {
-    text-align: center; /* 中央寄せ */
-    margin-top: 10px; /* 上部の余白を追加 */
-}
-
-.button2 button {
-    background-color: transparent; /* 背景色を透明にする */
-    border: none;
-    border-radius: 10px; /* 角丸を追加 */
-    margin: 50px; /* ボタン間のマージンを追加 */
-    padding: 30px 30px; /* ボタンの大きさを調整 */
-}
-
-.button2 button ion-icon {
-    font-size: 60px; /* アイコンの大きさを調整 */
-    margin-bottom: 0px; /* アイコンの上部の余白を追加 */
-}
-/* ここまでがQRとカメラ */
-
+/* ここまでBackボタン */
 
 /* ナビゲーションバーのCSS */
 .navigation {

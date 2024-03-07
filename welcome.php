@@ -1,5 +1,15 @@
 <?php
 session_start();
+
+// サインアウトがクリックされた場合
+if(isset($_GET["logout"]) && $_GET["logout"] == true){
+    // セッションを破棄
+    session_destroy();
+    // ログインページにリダイレクト
+    header("location: login.php");
+    exit;
+}
+
 // セッション変数 $_SESSION["loggedin"]を確認。ログイン済だったらウェルカムページへリダイレクト
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
@@ -23,8 +33,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <body>
     <h1 class="my-5">Hi,<b><?php echo htmlspecialchars($_SESSION["name"]); ?></b>. Welcome to our site.</h1>
     <p>
-        ここを一覧画面にする。<br>
-        <a href="login.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>
+        <a href="?logout=true" class="btn btn-danger ml-3">Sign Out of Your Account</a>
     </p>
     <a href="MyPage.php" class="btn btn-primary">マイページへ</a>
 </body>
