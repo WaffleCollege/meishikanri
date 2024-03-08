@@ -26,6 +26,10 @@ body {
   overflow-y: auto;
   margin: auto;
   z-index: 1; /* ナビゲーションバーの上に配置 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
 }
 
 
@@ -46,6 +50,7 @@ body {
   
   .wrapper {
     text-align: center;
+    margin-top: 80px;
   }
   
   .table_table-bordered {
@@ -85,9 +90,37 @@ body {
 /* ここまでが一覧 */
 
 
-
 /* 検索ボックス */
-  
+.search-container {
+  background-color: transparent; /* 背景色を白に設定 */
+  border-radius: 10px; /* 角を丸くする */
+  padding: 20px; /* 内側の余白を追加 */
+  width: 400px; /* 幅を設定 */
+  height: 200px; /* 高さを設定 */
+  position: fixed; /* 固定位置に配置 */
+  justify-content: center; /* 水平方向の中央揃え */
+  align-items: center; /*垂直方向の中央揃え */
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.search-container input[type="text"] {
+  width: 70%; /* 入力フィールドの幅を設定 */
+  padding: 10px; /* 入力フィールドの内側の余白を追加 */
+  border-radius: 5px; /* 入力フィールドの角を丸くする */
+  border: 1px solid #ccc; /* 入力フィールドの境界線を追加 */
+}
+.search-container button {
+  width: 25%; /* ボタンの幅を設定 */
+  padding: 10px; /* ボタンの内側の余白を追加 */
+  border-radius: 5px; /* ボタンの角を丸くする */
+  border: none; /* ボタンの境界線を削除 */
+  background-color: #4CAF50; /* ボタンの背景色を設定 */
+  color: white; /* ボタンのテキスト色を設定 */
+  cursor: pointer; /* カーソルをポインターに変更 */
+}
+.search-container button:hover {
+  background-color: #45a049; /* ボタンの背景色をホバー時に変更 */
+}
 
 /* ここまでが検索ボックス */
 
