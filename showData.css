@@ -4,13 +4,14 @@
   box-sizing: border-box;
 }
 
-.body {
-  display: flex;
+body {
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   height: 100vh;
   background-color: #F0E8F8;
 }
+
 
 .content {
   position: absolute;
@@ -25,10 +26,10 @@
   overflow-y: auto;
   margin: auto;
   z-index: 1; /* ナビゲーションバーの上に配置 */
-  
 }
 
 
+/* 一覧 */
 .showData_body{
     align-items: center;
   }
@@ -81,39 +82,15 @@
   .table_table-bordered tr {
     margin-bottom: 10px; /* 行ごとの余白を追加 */
   }
+/* ここまでが一覧 */
 
 
-  .search-form input[type="text"] {
-    width: 300px; /* 検索窓の幅を調整 */
-    height: 100px;
-    padding: 10px;
-    font-size: 16px;
-    background-color: white; /* 検索文字の背景を白くする */
-    border: none; /* 枠線をなくす */
-    border-radius: 20px; /* 角を丸くする */
-    
-  }
-  .serach {
-    display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-    margin-bottom: -350px;
-    margin-top: -350px;
-  }
+
+/* 検索ボックス */
   
-  .serach form button {
-    /* ボタンに関するスタイル */
-    height: 35px;
-    width: 35px;
-    background-color: white;
-    border: 1px solid #000000; /* 枠線を細くする */
-    border-radius: 20%; /* 角を丸くする */
-  }
-  
-  .serach form button ion-icon {
-    font-size: 14px; /* アイコンの大きさを調整 */
-  }
+
+/* ここまでが検索ボックス */
+
 
 /* ナビゲーションバーのCSS */
 .navigation {
