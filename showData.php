@@ -51,9 +51,10 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </div>
 <div class="content">
     <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Search...">
-        <button type="button" onclick="searchTable()">Search</button>
+        <input type="text" id="searchInput" placeholder="">
+        <button onclick="searchTable()">Search</button>
     </div>
+
 
     <div class="wrapper">
         <table class="table_table-bordered">
@@ -65,62 +66,76 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </tr>
             </thead>
             <tbody>
+            <tbody id="dataTable">
                 <?php foreach($rows as $row): ?>
                     <tr>
-                        <td style="text-align: center;"><?php echo $row['kanji_name'] . " ( " . $row['romaji_name'] . " )"; ?></td>
-                        <td style="text-align: center;"><?php echo $row['affiliation']; ?></td>
-                        <td style="text-align: center;"><?php echo $row['email_address']; ?></td>
+                    <td style="text-align: center;">
+                        <a href="friendPage.php?user_id=<?php echo $row['user_id']; ?>">
+                            <?php echo $row['kanji_name'] . " ( " . $row['romaji_name'] . " )"; ?>
+                        </a>
+                    </td>
+                    
+                    <td style="text-align: center;"><?php echo $row['affiliation']; ?></td>
+                    <td style="text-align: center;"><?php echo $row['email_address']; ?></td>
                     </tr>
                 <?php endforeach; ?>
+            </tbody>
             </tbody>
         </table>
     </div>
 </div>
 
+
 <!-- 検索機能のJS -->
 <script>
 function searchTable() {
-  // 入力された検索キーワードを取得
-  var input = document.getElementById("searchInput");
-  var filter = input.value.toUpperCase();
-  
-  // テーブルの行を取得
-  var table = document.querySelector(".table_table-bordered");
-  var rows = table.getElementsByTagName("tr");
-  
-  // 各行をループして検索し、表示/非表示を設定
-  for (var i = 0; i < rows.length; i++) {
-    var cells = rows[i].getElementsByTagName("td");
+  // 入力された検索ワードを取得
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("searchInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("dataTable");
+  tr = table.getElementsByTagName("tr");
+
+  // テーブルの各行を検索して非表示または表示を切り替える
+  for (i = 0; i < tr.length; i++) {
     var found = false;
-    for (var j = 0; j < cells.length; j++) {
-      var cell = cells[j];
-      if (cell) {
-        if (cell.innerHTML.toUpperCase().indexOf(filter) > -1) {
+    // 各行の各セルを検索
+    for (var j = 0; j < tr[i].cells.length; j++) {
+      td = tr[i].cells[j];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (doesContainAllChars(txtValue.toUpperCase(), filter.toUpperCase())) {
           found = true;
-          break;
+          break; // 一致するセルが見つかった場合はループを抜けます
         }
       }
     }
-    // ヘッダー行は常に表示されるようにする
-    if (rows[i].classList.contains("header-row")) {
-      rows[i].style.display = "";
+    if (found) {
+      tr[i].style.display = "";
     } else {
-      // 検索フィルターが空の場合はすべての行を表示する
-      if (filter === "") {
-        rows[i].style.display = "";
-      } else {
-        if (found) {
-          rows[i].style.display = "";
-        } else {
-          rows[i].style.display = "none";
-        }
-      }
+      tr[i].style.display = "none";
     }
   }
 }
 
-
+// 文字列がすべての文字を含んでいるかどうかをチェックするヘルパー関数
+function doesContainAllChars(str, searchStr) {
+  for (var i = 0; i < searchStr.length; i++) {
+    var char = searchStr.charAt(i);
+    if (str.indexOf(char) === -1) {
+      return false;
+    }
+  }
+  return true;
+}
 </script>
+
+
+
+
+
+
+
 
 <!-- サイドバーのJS -->
 <script>
