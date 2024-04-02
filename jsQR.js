@@ -51,7 +51,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 				enumerable: true,
 /******/ 				get: getter
 /******/ 			});
-/******/ 		}
+/******/ 		 }
 /******/ 	};
 /******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
